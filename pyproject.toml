@@ -7,5 +7,6 @@ requires-python = ">=3.12"
 dependencies = [
     "cookiecutter>=2.6.0",
     "django>=5.1.6",
+    "django-decouple>=2.1",
     "pillow>=11.1.0",
 ]
