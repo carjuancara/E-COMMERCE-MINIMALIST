@@ -1,7 +1,7 @@
 from django.db import models
 from django.contrib.auth.models import AbstractUser
 from phonenumber_field.modelfields import PhoneNumber
-
+import datetime
 class Users(AbstractUser):
     address = models.CharField(max_length=200, blank=False, null=True)
     phone = PhoneNumber(region='EU')
@@ -27,5 +27,24 @@ class Products(models.Model):
 
     def __str__(self):
         return self.name.capitalize()
+
+class Orders(models.Model):
+    ORDER_STATE =[
+        ('pendiente','Pendiente'), 
+        ('procesado','Procesando'), 
+        ('enviado','Enviado'), 
+        ('entregado','Entregado'), 
+        ('cancelado','Cancelado')
+        ]
+
+    user_id = models.ForeignKey(Users, on_delete=models.CASCADE, related_name='users')
+    date_order = models.DateTimeField(auto_now_add=True)
+    total_order = models.DecimalField(max_digits=6, decimal_places=2, null=False, blank=False)
+    mailing_address = models.CharField(max_length=255, null=True, blank=True)
+    state = models.CharField(choices=ORDER_STATE, default=ORDER_STATE[0][0])
+
+    def __str__(self):
+        return f"{self.user_id} - {self.date_order.strftime('%Y-%m-%d')} - ${self.total_order:.2f}"
+
 
 
