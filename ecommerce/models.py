@@ -47,4 +47,13 @@ class Orders(models.Model):
         return f"{self.user_id} - {self.date_order.strftime('%Y-%m-%d')} - ${self.total_order:.2f}"
 
 
+class ItemsOrder(models.Model):
+    order_id = models.ForeignKey(Orders, on_delete=models.CASCADE, related_name='orders')
+    product_id = models.ForeignKey(Products, on_delete=models.CASCADE, related_name='products')
+    quantity = models.IntegerField(default=1, null=False, blank=False)
+    unit_price = models.DecimalField(max_digits=6, decimal_places=2, default=1.00)
+
+    def __str__(self):
+        return f"Order {self.order_id} - {self.quantity} - {self.product_id} = { self.quantity * self.unit_price}"
+
 
