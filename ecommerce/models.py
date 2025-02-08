@@ -15,6 +15,17 @@ class Categories(models.Model):
     def __str__(self):
         return self.name.title()
 
+class Products(models.Model):
+    category_id = models.ForeignKey(Categories, on_delete=models.CASCADE, related_name='category')
+    name = models.CharField(max_length=200, unique=True, null=False, blank=False)
+    description = models.TextField(blank=True)
+    price = models.DecimalField(max_digits=6, decimal_places=2, default=0.00)
+    discount = models.DecimalField(max_digits=2, decimal_places=2, default=0.00)
+    stock = models.IntegerField(default=0)
+    image = models.URLField(blank=True, null=True)
+    create_at = models.DateTimeField(auto_now_add=True)
 
+    def __str__(self):
+        return self.name.capitalize()
 
 
