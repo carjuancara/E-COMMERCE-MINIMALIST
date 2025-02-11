@@ -76,7 +76,7 @@ class Orders(models.Model):
         User, on_delete=models.CASCADE, related_name='orders', default=1)
     date_ordered = models.DateTimeField(auto_now_add=True)
     total_amount = models.DecimalField(max_digits=10, decimal_places=2, validators=[
-                                       MinValueValidator(0)], default=0.00)
+                                    MinValueValidator(0)], default=0.00)
     shipping_address = models.CharField(
         max_length=255, null=False, blank=False)
     status = models.CharField(
