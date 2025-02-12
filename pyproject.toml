@@ -9,6 +9,7 @@ dependencies = [
     "django>=5.1.6",
     "django-decouple>=2.1",
     "django-phonenumber-field>=8.0.0",
+    "djangorestframework>=3.15.2",
     "model-bakery>=1.20.1",
     "phonenumbers>=8.13.54",
     "pillow>=11.1.0",
