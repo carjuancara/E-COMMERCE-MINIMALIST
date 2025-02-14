@@ -40,8 +40,20 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'ecommerce',
     'rest_framework',
+    'drf_spectacular',
 ]
 
+SPECTACULAR_SETTINGS = {
+    'TITLE':"E-commercer Minimalist",
+    'DESCRIPTION':"E-commerce minimalista, maneja perfil, categoria, usuario, productos, ordenes y item de ordenes",
+    "VERSION":"1.0.0",
+    }
+
+REST_FRAMEWORK = {
+    "DEFAULT_SCHEMA_CLASS": "drf_spectacular.openapi.AutoSchema",
+    'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.PageNumberPagination',
+    'PAGE_SIZE': 10,
+    }
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
@@ -57,7 +69,7 @@ ROOT_URLCONF = 'core.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [BASE_DIR / 'templates'],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
